@@ -6,10 +6,10 @@ const tilt = window.innerWidth < window.innerHeight;
 
 <template>
     <div id="splash">
-        <h1>Pumpkins vs. Undead</h1>
+        <h1>🎃 ️Pumpkins vs. Undead 🧟</h1>
         <template v-if="tilt">
-            <h1>📱🔄</h1>
-            <h2>For a better experience, set your device to be landscape-oriented</h2>
+            <h1 class="tilt">📱🔄</h1>
+            <h2 class="tilt">Set your device to landscape for a better experience</h2>
         </template>
         <button onclick="document.body.requestFullscreen();">Fullscreen</button>
         <button v-on:click="emit('click')">Play</button>
@@ -22,5 +22,9 @@ const tilt = window.innerWidth < window.innerHeight;
     place-items: center;
     gap: 1rem;
     text-align: center;
+}
+
+.tilt {
+    margin: 0;
 }
 </style>
