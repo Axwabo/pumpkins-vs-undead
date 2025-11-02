@@ -14,8 +14,6 @@ const { index } = defineProps<{ index: number; }>();
 
 const car = useTemplateRef("car");
 
-const carKey = ref(0);
-
 const carExists = ref(true);
 
 const time = computed(() => `${5 / speed.value}s`);
