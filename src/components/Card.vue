@@ -14,8 +14,8 @@ const cost = pumpkinCosts[type];
 
 <template>
     <button class="card" :disabled="leaves < cost" :draggable="leaves >= cost" v-on:dragstart="dragging = type">
-        <span :class="[ 'image', toClass(type) ]"></span>
         <span>{{ type }}</span>
+        <span :class="[ 'pumpkin', toClass(type) ]"></span>
         <span>{{ cost }}🍁</span>
     </button>
 </template>
@@ -24,5 +24,17 @@ const cost = pumpkinCosts[type];
 .card {
     display: grid;
     place-items: center;
+    cursor: not-allowed;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.card[draggable='true'] {
+    cursor: grab;
+}
+
+.pumpkin {
+    width: 100%;
+    height: 3rem;
 }
 </style>

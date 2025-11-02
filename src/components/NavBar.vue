@@ -43,6 +43,7 @@ const menuDialog = useTemplateRef("menu");
 
 #remove {
     padding: 0.2rem;
+    cursor: grab;
 }
 
 .emoji {

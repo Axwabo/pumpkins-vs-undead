@@ -29,6 +29,7 @@ defineExpose({
 <style scoped>
 dialog {
     text-align: center;
+    font-size: 1.5em;
 }
 
 h1, h2, p {
