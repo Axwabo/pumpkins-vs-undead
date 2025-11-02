@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia";
 import { computed, useTemplateRef, watch } from "vue";
 import rewards from "../types/rewards.ts";
 import { toClass } from "../utils/css.ts";
+import descriptions from "../types/pumpkins/description.ts";
 
 const { nextRound, unlockedCards } = useGameStore();
 
@@ -28,6 +29,7 @@ watch(roundCompleted, value => {
         <template v-if="reward">
             <span :class="[ 'pumpkin', toClass(reward) ]"></span>
             <p>Unlocked {{ reward }}</p>
+            <p><small>{{ descriptions[reward] }}</small></p>
         </template>
         <button v-on:click="complete?.close()">Continue</button>
     </dialog>
@@ -37,6 +39,10 @@ watch(roundCompleted, value => {
 dialog {
     font-size: 2em;
     text-align: center;
+}
+
+dialog p {
+    margin: 0;
 }
 
 .pumpkin {

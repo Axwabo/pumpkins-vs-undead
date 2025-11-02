@@ -11,7 +11,7 @@ function center(element: HTMLElement) {
     return { cx, cy };
 }
 
-const explosionDistance = 200;
+const explosionDistance = 150;
 
 export default class Peach extends Pumpkin {
     readonly health = Health.create(0);
