@@ -14,6 +14,8 @@ const { index } = defineProps<{ index: number; }>();
 
 const car = useTemplateRef("car");
 
+const carKey = ref(0);
+
 const carExists = ref(true);
 
 const time = computed(() => `${5 / speed.value}s`);
@@ -29,7 +31,7 @@ useElementBinding(() => lanes[index] ?? null, car);
 <template>
     <div class="lane">
         <div class="house">
-            <div class="car" ref="car" v-if="carExists" v-on:animationend="carExists = false">🚗</div>
+            <div class="car" ref="car" v-show="carExists" v-on:animationend="carExists = false">🚗</div>
         </div>
         <PumpkinSlot v-for="(pumpkin, slotIndex) in lanes[index]!.slots" :key="pumpkin?.type ?? slotIndex" :index :slotIndex :pumpkin />
         <div class="sidewalk"></div>
