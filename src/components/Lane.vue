@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import PumpkinSlot from "./PumpkinSlot.vue";
-import type { Lane } from "../types/lane.ts";
+import useGameStore from "../stores/gameStore.ts";
 
-const { lane } = defineProps<{ lane: Lane; }>();
+const { lanes } = useGameStore();
+
+const { index } = defineProps<{ index: number; }>();
 </script>
 
 <template>
     <div class="lane">
-        <PumpkinSlot v-for="pumpkin in lane" :pumpkin />
+        <PumpkinSlot v-for="(pumpkin, slotIndex) in lanes[index]" :key="pumpkin?.type ?? slotIndex" :index :slotIndex :pumpkin />
     </div>
 </template>
 

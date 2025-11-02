@@ -11,7 +11,7 @@ const { lanes } = useGameStore();
 <template>
     <div id="game">
         <NavBar />
-        <Lane v-for="lane in lanes" :lane />
+        <Lane v-for="(_, index) in lanes" :index />
         <Stats />
     </div>
     <Soundtrack />

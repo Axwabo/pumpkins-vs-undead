@@ -1,16 +1,16 @@
 import type Pumpkin from "./pumpkins/pumpkin.ts";
-import { ref, type Ref } from "vue";
+import { shallowReactive } from "vue";
 
-export type Slot = Ref<Pumpkin | null>;
+export type Slot = Pumpkin | null;
 
 export type Lane = Slot[];
 
 export function createLanes() {
-    const lanes: Lane[] = [];
+    const lanes: Lane[] = shallowReactive([]);
     for (let y = 0; y < 5; y++) {
-        const lane: Lane = [];
+        const lane: Lane = shallowReactive([]);
         for (let x = 0; x < 10; x++)
-            lane.push(ref(null));
+            lane.push(null);
         lanes.push(lane);
     }
     return lanes;

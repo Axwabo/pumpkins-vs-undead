@@ -9,18 +9,16 @@ import MapleTree from "../types/pumpkins/mapleTree.ts";
 import type { Slot } from "../types/lane.ts";
 import { storeToRefs } from "pinia";
 
-const { pumpkin: pumpkinRef } = defineProps<{ pumpkin: Slot; }>();
+const { index, slotIndex, pumpkin } = defineProps<{ index: number, slotIndex: number; pumpkin: Slot; }>();
 
-const pumpkin = pumpkinRef;
-
-const { earn, purchase } = useGameStore();
+const { purchase, lanes } = useGameStore();
 
 const { dragging } = storeToRefs(useGameStore());
 
-useAnimationFrame(seconds => pumpkin.value?.update(seconds));
+useAnimationFrame(seconds => pumpkin?.update(seconds));
 
 function onDragOver(ev: DragEvent) {
-    if (dragging.value === "axe" !== !pumpkin.value)
+    if (dragging.value === "axe" !== !pumpkin)
         ev.preventDefault();
 }
 
@@ -29,23 +27,16 @@ function onDrop(ev: DragEvent) {
     if (!data)
         return;
     const axe = data === "axe";
-    if (axe === !pumpkin.value)
+    if (axe === !pumpkin)
         return;
     ev.preventDefault();
     if (axe)
-        removePumpkin();
+        pumpkin?.remove();
     else if (purchase(pumpkinCosts[data]))
-        pumpkin.value = createPumpkin(data);
+        lanes[index]![slotIndex] = createPumpkin(data, index, slotIndex);
     dragging.value = undefined;
 }
 
-function removePumpkin() {
-    if (!pumpkin.value)
-        return;
-    if (pumpkin.value instanceof MapleTree)
-        earn(pumpkin.value.drops.reduce((prev, curr) => prev + curr.amount, 0));
-    pumpkin.value = null;
-}
 </script>
 
 <template>

@@ -10,6 +10,7 @@ const { round } = storeToRefs(useGameStore());
         <span>🎃 ️Pumpkins vs. Undead 🧟</span>
         <div class="separator"></div>
         <span>Round <span class="round">{{ round }}</span></span>
+        <progress value="0.5"></progress>
     </footer>
 </template>
 
@@ -17,6 +18,8 @@ const { round } = storeToRefs(useGameStore());
 #stats {
     font-size: 2em;
     display: flex;
+    align-items: center;
+    gap: 1rem;
     padding: 0.5rem;
     -webkit-text-stroke: 4px black;
     paint-order: stroke fill;
@@ -24,5 +27,9 @@ const { round } = storeToRefs(useGameStore());
 
 .round {
     color: red;
+}
+
+progress {
+    accent-color: red;
 }
 </style>
