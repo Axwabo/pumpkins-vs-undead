@@ -7,20 +7,28 @@ import Stats from "./Stats.vue";
 import RandomLeafDrop from "./RandomLeafDrop.vue";
 import RoundComplete from "./RoundComplete.vue";
 import Instructions from "./Instructions.vue";
+import EndScreen from "./EndScreen.vue";
+import { storeToRefs } from "pinia";
 
 const { lanes } = useGameStore();
+
+const { state } = storeToRefs(useGameStore());
 </script>
 
 <template>
-    <div id="game">
-        <NavBar />
-        <Lane v-for="(_, index) in lanes" :index />
-        <RandomLeafDrop />
-        <Stats />
-    </div>
+    <template v-if="state === 'playing'">
+        <div id="game">
+            <NavBar />
+            <Lane v-for="(_, index) in lanes" :index />
+            <RandomLeafDrop />
+            <Stats />
+        </div>
+        <RoundComplete />
+        <Instructions />
+    </template>
+    <EndScreen v-else-if="state === 'won'" :win="true" />
+    <EndScreen v-else-if="state === 'lost'" />
     <Soundtrack />
-    <RoundComplete />
-    <Instructions />
 </template>
 
 <style scoped>
