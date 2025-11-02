@@ -35,7 +35,7 @@ function randomize() {
     return Math.random() * 5 + 2;
 }
 
-watch(wave, () => cooldown = randomize() + 10);
+watch(wave, () => cooldown = randomize() + (wave.value === 0 ? 20 : 10) + round.value * 3);
 </script>
 
 <template>

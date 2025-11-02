@@ -31,6 +31,7 @@ useElementBinding(() => undead, entity);
     height: 100%;
     width: 5rem;
     left: v-bind(x);
+    pointer-events: none;
 }
 
 .undead-entity {

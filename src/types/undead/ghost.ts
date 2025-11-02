@@ -3,7 +3,7 @@ import Health from "../health.ts";
 import type { UndeadType } from "./undeadType.ts";
 
 export default class Ghost extends Undead {
-    readonly health = Health.create(50);
+    readonly health = Health.create(60);
     readonly speed: number = 40;
     readonly type: UndeadType = "ghost";
 
@@ -13,6 +13,5 @@ export default class Ghost extends Undead {
     }
 
     freeze() {
-        super.freeze();
     }
 }
