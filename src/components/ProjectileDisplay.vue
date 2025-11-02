@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type Projectile from "../types/projectile.ts";
-import { onMounted, onUnmounted, useTemplateRef } from "vue";
+import { useTemplateRef } from "vue";
 import useAnimationFrame from "../composables/useAnimationFrame.ts";
+import useElementBinding from "../composables/useElementBinding.ts";
 
 const { projectile } = defineProps<{ projectile: Projectile; }>();
 
@@ -20,8 +21,7 @@ useAnimationFrame(seconds => {
         projectile.remove();
 });
 
-onMounted(() => projectile.element = element.value!);
-onUnmounted(() => projectile.element = undefined);
+useElementBinding(() => projectile, element);
 </script>
 
 <template>

@@ -2,12 +2,10 @@ import type { PumpkinType } from "./pumpkinType.ts";
 import Entity from "../entity.ts";
 import { shallowReactive } from "vue";
 import type Projectile from "../projectile.ts";
-import type { ElementBindable } from "../elementBindable.ts";
 
-export default abstract class Pumpkin extends Entity implements ElementBindable {
+export default abstract class Pumpkin extends Entity {
     readonly slotIndex: number;
     readonly projectiles: Projectile[] = shallowReactive([]);
-    element?: HTMLElement;
 
     constructor(laneIndex: number, slotIndex: number) {
         super(laneIndex);
