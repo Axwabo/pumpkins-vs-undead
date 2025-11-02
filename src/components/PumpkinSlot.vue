@@ -18,7 +18,7 @@ const { dragging } = storeToRefs(useGameStore());
 useAnimationFrame(seconds => pumpkin?.update(seconds));
 
 function onDragOver(ev: DragEvent) {
-    if (dragging.value === "axe" !== !pumpkin)
+    if (dragging.value && dragging.value === "axe" !== !pumpkin)
         ev.preventDefault();
 }
 
@@ -54,5 +54,6 @@ function onDrop(ev: DragEvent) {
     background-color: rgba(0, 255, 0, 0.1);
     display: grid;
     padding: 15%;
+    user-select: none;
 }
 </style>
