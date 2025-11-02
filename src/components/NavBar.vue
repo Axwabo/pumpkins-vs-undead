@@ -7,7 +7,7 @@ import Card from "./Card.vue";
 
 const { unlockedCards } = useGameStore();
 
-const { leaves } = storeToRefs(useGameStore());
+const { leaves, dragging } = storeToRefs(useGameStore());
 
 const menuDialog = useTemplateRef("menu");
 </script>
@@ -16,6 +16,11 @@ const menuDialog = useTemplateRef("menu");
     <nav id="nav">
         <span id="leafCount">🍁{{ leaves }}</span>
         <Card v-for="type in unlockedCards" :type />
+        <button id="remove" draggable="true" v-on:dragstart="dragging = 'axe'">
+            <span class="emoji">🪓</span>
+            <br>
+            Remove
+        </button>
         <div class="separator"></div>
         <button v-on:click="menuDialog?.open()" id="openMenu">Menu</button>
     </nav>
@@ -33,6 +38,14 @@ const menuDialog = useTemplateRef("menu");
 #leafCount {
     display: inline-block;
     min-width: 10ch;
+    font-size: 2em;
+}
+
+#remove {
+    padding: 0.2rem;
+}
+
+.emoji {
     font-size: 2em;
 }
 

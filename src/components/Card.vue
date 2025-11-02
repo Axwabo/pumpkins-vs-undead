@@ -7,17 +7,13 @@ import useGameStore from "../stores/gameStore.ts";
 
 const { type } = defineProps<{ type: PumpkinType; }>();
 
-const { leaves } = storeToRefs(useGameStore());
+const { leaves, dragging } = storeToRefs(useGameStore());
 
 const cost = pumpkinCosts[type];
-
-function onDragStart(ev: DragEvent) {
-    ev.dataTransfer?.setData("pumpkin", type);
-}
 </script>
 
 <template>
-    <button class="card" :disabled="leaves < cost" :draggable="leaves >= cost" v-on:dragstart="onDragStart">
+    <button class="card" :disabled="leaves < cost" :draggable="leaves >= cost" v-on:dragstart="dragging = type">
         <span :class="[ 'image', toClass(type) ]"></span>
         <span>{{ type }}</span>
         <span>{{ cost }}🍁</span>
