@@ -3,6 +3,7 @@ import NavBar from "./NavBar.vue";
 import Lane from "./Lane.vue";
 import Soundtrack from "./Soundtrack.vue";
 import useGameStore from "../stores/gameStore.ts";
+import Stats from "./Stats.vue";
 
 const { lanes } = useGameStore();
 </script>
@@ -11,6 +12,7 @@ const { lanes } = useGameStore();
     <div id="game">
         <NavBar />
         <Lane v-for="lane in lanes" :lane />
+        <Stats />
     </div>
     <Soundtrack />
 </template>
@@ -20,7 +22,7 @@ const { lanes } = useGameStore();
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: auto repeat(5, 1fr);
+    grid-template-rows: auto repeat(5, 1fr) auto;
 }
 </style>
 

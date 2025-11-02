@@ -46,11 +46,11 @@ const menuDialog = useTemplateRef("menu");
     cursor: grab;
 }
 
-.emoji {
+#openMenu {
     font-size: 2em;
 }
 
-.separator {
-    flex: 1;
+.emoji {
+    font-size: 2em;
 }
 </style>
