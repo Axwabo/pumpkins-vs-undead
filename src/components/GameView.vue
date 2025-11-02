@@ -6,6 +6,7 @@ import useGameStore from "../stores/gameStore.ts";
 import Stats from "./Stats.vue";
 import RandomLeafDrop from "./RandomLeafDrop.vue";
 import RoundComplete from "./RoundComplete.vue";
+import Instructions from "./Instructions.vue";
 
 const { lanes } = useGameStore();
 </script>
@@ -19,6 +20,7 @@ const { lanes } = useGameStore();
     </div>
     <Soundtrack />
     <RoundComplete />
+    <Instructions />
 </template>
 
 <style scoped>

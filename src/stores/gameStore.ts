@@ -54,6 +54,10 @@ const store = defineStore("game", {
             this.wave++;
         },
         nextRound() {
+            if (this.round >= rounds.length - 1) {
+                this.state = "won";
+                return;
+            }
             this.roundCompleted = false;
             this.zombiesThisRound = 0;
             this.zombiesThisWave = 0;
