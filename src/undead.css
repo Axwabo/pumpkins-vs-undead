@@ -5,3 +5,8 @@
 .ghost {
     background-image: url("./assets/images/ghost.webp");
 }
+
+.frozen {
+    filter: sepia(0.75) hue-rotate(120deg);
+
+}

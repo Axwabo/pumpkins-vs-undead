@@ -17,6 +17,7 @@ interface State {
     dragging: PumpkinType | "axe" | undefined;
     roundCompleted: boolean;
     speed: number;
+    state: "playing" | "lost" | "won";
 }
 
 const store = defineStore("game", {
@@ -31,7 +32,8 @@ const store = defineStore("game", {
         undead: shallowReactive(new Set()),
         dragging: undefined,
         roundCompleted: false,
-        speed: 1
+        speed: 1,
+        state: "playing"
     }),
     actions: {
         earn(amount: number) {
@@ -63,6 +65,9 @@ const store = defineStore("game", {
                 for (let i = 0; i < lane.slots.length; i++)
                     lane.slots[i] = null;
             }
+        },
+        lose() {
+            this.state = "lost";
         }
     }
 });

@@ -56,7 +56,7 @@ useElementBinding(() => pumpkin, element);
 <template>
     <div class="slot" v-on:dragover="onDragOver" v-on:drop="onDrop">
         <template v-if="pumpkin">
-            <div :class="[ 'pumpkin', toClass(pumpkin.type) ]" ref="element">
+            <div :class="[ 'pumpkin', toClass(pumpkin.type) ]" ref="element" v-on:animationend="pumpkin?.remove()">
                 <HealthBar :entity="pumpkin" />
             </div>
             <ProjectileDisplay v-for="projectile in pumpkin.projectiles" :projectile :key="projectile.id" />

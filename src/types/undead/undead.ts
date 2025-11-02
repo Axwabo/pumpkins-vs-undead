@@ -27,7 +27,15 @@ export default abstract class Undead extends Entity {
             return;
         }
 
-        this.position.x -= seconds * this.speed;
+        this.move(seconds);
+    }
+
+    move(seconds: number) {
+        this.position.x -= seconds * this.speed * (this.element?.classList.contains("frozen") ? 0.5 : 1);
+        if (this.position.x > 10)
+            return;
+        const { lose } = useGameStore();
+        lose();
     }
 
     remove(): void {

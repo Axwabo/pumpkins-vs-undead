@@ -9,6 +9,6 @@ export default class Ghost extends Undead {
 
     update(seconds: number) {
         if (!this.triggerCar(this.position.x))
-            this.position.x -= this.speed * seconds;
+            this.move(seconds);
     }
 }
