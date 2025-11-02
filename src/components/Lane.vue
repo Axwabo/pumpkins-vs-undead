@@ -44,6 +44,7 @@ useElementBinding(() => lanes[index] ?? null, car);
 .car {
     scale: -1 1;
     font-size: 3rem;
+    user-select: none;
 }
 
 .sidewalk {

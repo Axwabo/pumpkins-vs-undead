@@ -15,7 +15,7 @@ import useElementBinding from "../composables/useElementBinding.ts";
 
 const { index, slotIndex, pumpkin } = defineProps<{ index: number, slotIndex: number; pumpkin: Slot; }>();
 
-const { purchase, lanes } = useGameStore();
+const { earn, purchase, lanes } = useGameStore();
 
 const { dragging } = storeToRefs(useGameStore());
 
@@ -37,10 +37,17 @@ function onDrop(ev: DragEvent) {
         return;
     ev.preventDefault();
     if (axe)
-        pumpkin?.remove();
+        removePumpkin();
     else if (purchase(pumpkinCosts[data]))
         lanes[index]!.slots[slotIndex] = createPumpkin(data, lanes[index]!, slotIndex);
     dragging.value = undefined;
+}
+
+function removePumpkin() {
+    if (!pumpkin)
+        return;
+    earn(Math.floor(pumpkinCosts[pumpkin.type] * 0.3));
+    pumpkin.remove();
 }
 
 useElementBinding(() => pumpkin, element);
