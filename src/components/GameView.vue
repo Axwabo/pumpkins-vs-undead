@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavBar from "./NavBar.vue";
 import Lane from "./Lane.vue";
+import Soundtrack from "./Soundtrack.vue";
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Lane from "./Lane.vue";
         <Lane />
         <Lane />
     </div>
+    <Soundtrack />
 </template>
 
 <style scoped>
