@@ -5,7 +5,7 @@ import useGameStore from "../../stores/gameStore.ts";
 
 export default abstract class Undead extends Entity {
     abstract readonly type: UndeadType;
-    abstract readonly speed: number;
+    abstract speed: number;
     readonly position = reactive({ x: window.innerWidth });
     cooldown: number = 2;
     fronzenFor: number = 0;
