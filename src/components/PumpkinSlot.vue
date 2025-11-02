@@ -10,12 +10,16 @@ import type { Slot } from "../types/lane.ts";
 import { storeToRefs } from "pinia";
 import HealthBar from "./HealthBar.vue";
 import ProjectileDisplay from "./ProjectileDisplay.vue";
+import { useTemplateRef } from "vue";
+import useElementBinding from "../composables/useElementBinding.ts";
 
 const { index, slotIndex, pumpkin } = defineProps<{ index: number, slotIndex: number; pumpkin: Slot; }>();
 
 const { purchase, lanes } = useGameStore();
 
 const { dragging } = storeToRefs(useGameStore());
+
+const element = useTemplateRef("element");
 
 useAnimationFrame(seconds => pumpkin?.update(seconds));
 
@@ -39,12 +43,13 @@ function onDrop(ev: DragEvent) {
     dragging.value = undefined;
 }
 
+useElementBinding(() => pumpkin, element);
 </script>
 
 <template>
     <div class="slot" v-on:dragover="onDragOver" v-on:drop="onDrop">
         <template v-if="pumpkin">
-            <div :class="[ 'pumpkin', toClass(pumpkin.type) ]">
+            <div :class="[ 'pumpkin', toClass(pumpkin.type) ]" ref="element">
                 <HealthBar :entity="pumpkin" />
             </div>
             <ProjectileDisplay v-for="projectile in pumpkin.projectiles" :projectile :key="projectile.id" />

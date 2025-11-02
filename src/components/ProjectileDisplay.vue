@@ -17,7 +17,7 @@ useAnimationFrame(seconds => {
         return;
     element.value.style.translate = `${x}px -50%`;
     if (element.value.getBoundingClientRect().x > window.innerWidth)
-        projectile.pumpkin.projectiles.delete(projectile);
+        projectile.remove();
 });
 
 onMounted(() => projectile.element = element.value!);

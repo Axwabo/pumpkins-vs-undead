@@ -1,6 +1,8 @@
 import type Pumpkin from "./pumpkins/pumpkin.ts";
+import type { ElementBindable } from "./elementBindable.ts";
+import remove from "../utils/remove.ts";
 
-export default class Projectile {
+export default class Projectile implements ElementBindable {
     readonly id = Math.random();
     readonly pumpkin: Pumpkin;
     readonly color: string;
@@ -14,8 +16,6 @@ export default class Projectile {
     }
 
     remove() {
-        const index = this.pumpkin.projectiles.indexOf(this);
-        if (index !== -1)
-            this.pumpkin.projectiles.splice(index, 1);
+        remove(this.pumpkin.projectiles, this);
     }
 }
