@@ -12,7 +12,7 @@ interface State {
     zombiesThisRound: number;
     unlockedCards: PumpkinType[];
     lanes: Lane[];
-    undead: Undead[];
+    undead: Set<Undead>;
     dragging: PumpkinType | "axe" | undefined;
 }
 
@@ -23,9 +23,9 @@ const store = defineStore("game", {
         wave: 0,
         zombiesThisWave: 0,
         zombiesThisRound: 0,
-        unlockedCards: reactive([ "Maple Tree" ]),
+        unlockedCards: reactive([ "Maple Tree", "Seed Shooter" ]),
         lanes: createLanes(),
-        undead: shallowReactive([]),
+        undead: shallowReactive(new Set()),
         dragging: undefined
     }),
     actions: {

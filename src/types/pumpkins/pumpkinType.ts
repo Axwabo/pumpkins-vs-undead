@@ -1,3 +1,3 @@
-export const pumpkinTypes = [ "Maple Tree" ] as const;
+export const pumpkinTypes = [ "Maple Tree", "Seed Shooter" ] as const;
 
 export type PumpkinType = (typeof pumpkinTypes)[number];

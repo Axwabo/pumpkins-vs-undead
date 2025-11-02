@@ -1,6 +1,7 @@
 import Entity from "../entity.ts";
 import { ref, type Ref } from "vue";
 import type { UndeadType } from "./undeadType.ts";
+import useGameStore from "../../stores/gameStore.ts";
 
 export default abstract class Undead extends Entity<Undead> {
     abstract readonly type: UndeadType;
@@ -9,5 +10,11 @@ export default abstract class Undead extends Entity<Undead> {
 
     update(seconds: number): void {
         this.x.value -= seconds * this.speed;
+    }
+
+    remove(): void {
+        const { undead, nextWave } = useGameStore();
+        if (undead.delete(this))
+            nextWave();
     }
 }

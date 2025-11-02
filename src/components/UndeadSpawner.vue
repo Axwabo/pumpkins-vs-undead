@@ -27,7 +27,7 @@ useAnimationFrame(seconds => {
     zombiesThisRound.value++;
     const type = currentWave.value[zombiesThisWave.value++]! as UndeadType;
     const entity = createUndead(type, index);
-    undead.push(entity);
+    undead.add(entity);
     thisLane.push(entity);
     cooldown = randomize();
 });
