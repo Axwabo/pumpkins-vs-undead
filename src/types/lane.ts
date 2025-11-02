@@ -1,10 +1,11 @@
 import type Pumpkin from "./pumpkins/pumpkin.ts";
 import { shallowReactive } from "vue";
 import type Undead from "./undead/undead.ts";
+import type { ElementBindable } from "./elementBindable.ts";
 
 export type Slot = Pumpkin | null;
 
-export interface Lane {
+export interface Lane extends ElementBindable {
     slots: Slot[];
     undead: Set<Undead>;
 }

@@ -2,6 +2,7 @@ import type { Reactive } from "vue";
 import type Health from "./health.ts";
 import type { Lane } from "./lane.ts";
 import useGameStore from "../stores/gameStore.ts";
+import type { ElementBindable } from "./elementBindable.ts";
 
 export default abstract class Entity implements ElementBindable {
     readonly laneIndex: number;

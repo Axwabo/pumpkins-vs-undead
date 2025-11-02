@@ -2,16 +2,24 @@
 import PumpkinSlot from "./PumpkinSlot.vue";
 import useGameStore from "../stores/gameStore.ts";
 import UndeadSpawner from "./UndeadSpawner.vue";
+import { ref, useTemplateRef } from "vue";
+import useElementBinding from "../composables/useElementBinding.ts";
 
 const { lanes } = useGameStore();
 
 const { index } = defineProps<{ index: number; }>();
+
+const car = useTemplateRef("car");
+
+const carExists = ref(true);
+
+useElementBinding(() => lanes[index] ?? null, car);
 </script>
 
 <template>
     <div class="lane">
         <div class="house">
-            <button>🚗</button>
+            <div class="car" ref="car" v-if="carExists" v-on:animationend="carExists = false">🚗</div>
         </div>
         <PumpkinSlot v-for="(pumpkin, slotIndex) in lanes[index]!.slots" :key="pumpkin?.type ?? slotIndex" :index :slotIndex :pumpkin />
         <div class="sidewalk"></div>
@@ -27,17 +35,28 @@ const { index } = defineProps<{ index: number; }>();
 }
 
 .house {
+    position: relative;
     background-color: gray;
     display: grid;
     place-items: center;
 }
 
-.house button {
+.car {
     scale: -1 1;
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .sidewalk {
     background-color: gray;
+}
+
+.car.moving {
+    animation: car 5s linear;
+}
+
+@keyframes car {
+    to {
+        translate: 100vw 0;
+    }
 }
 </style>

@@ -15,7 +15,7 @@ export default class SeedShooter extends Pumpkin {
         this.shoot();
     }
 
-    private damageUndead() {
+    damageUndead() {
         for (const projectile of this.projectiles) {
             if (!projectile.element)
                 continue;
@@ -42,7 +42,7 @@ export default class SeedShooter extends Pumpkin {
         this.projectiles.push(new Projectile(this, "orange", 20));
     }
 
-    private shouldShoot() {
+    shouldShoot() {
         if (!this.element)
             return false;
         const rect = this.element.getBoundingClientRect();

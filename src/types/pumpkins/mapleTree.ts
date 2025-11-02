@@ -18,7 +18,7 @@ export default class MapleTree extends Pumpkin {
 
     health = Health.create(100);
 
-    private remaining: number = randomize();
+    remaining: number = randomize();
 
     public readonly drops: ShallowReactive<LeafDrop[]> = shallowReactive([]);
 

@@ -11,6 +11,8 @@ export default abstract class Undead extends Entity {
 
     update(seconds: number): void {
         const x = this.position.x;
+        if (this.triggerCar(x))
+            return;
         for (const slot of this.lane.slots) {
             if (!slot?.element)
                 continue;
@@ -33,5 +35,16 @@ export default abstract class Undead extends Entity {
         this.lane.undead.delete(this);
         if (undead.delete(this) && undead.size === 0)
             nextWave();
+    }
+
+    triggerCar(x: number) {
+        if (!this.lane.element)
+            return false;
+        const rect = this.lane.element.getBoundingClientRect();
+        if (rect.left > x || rect.right < x)
+            return false;
+        this.lane.element.classList.add("moving");
+        this.remove();
+        return true;
     }
 }
