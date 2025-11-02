@@ -20,6 +20,9 @@ const rounds: Round[] = [
         [ "generic", "armored", "generic" ],
         [ "generic", "generic", "armored", "ghost" ],
         [ "ghost", "ghost", "ghost", "ghost" ]
+    ],
+    [
+        [ "generic", "generic", "enderman" ]
     ]
 ] as const;
 

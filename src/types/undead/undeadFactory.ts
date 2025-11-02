@@ -4,6 +4,7 @@ import GenericUndead from "./genericUndead.ts";
 import Ghost from "./ghost.ts";
 import type { Lane } from "../lane.ts";
 import Armored from "./armored.ts";
+import Enderman from "./enderman.ts";
 
 export default function createUndead(type: UndeadType, lane: Lane): Undead {
     switch (type) {
@@ -13,5 +14,7 @@ export default function createUndead(type: UndeadType, lane: Lane): Undead {
             return new Armored(lane);
         case "ghost":
             return new Ghost(lane);
+        case "enderman":
+            return new Enderman(lane);
     }
 }

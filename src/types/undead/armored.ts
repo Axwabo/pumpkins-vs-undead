@@ -12,7 +12,6 @@ export default class Armored extends Undead {
         if (this.health.current > 100)
             return;
         this.speed = 20;
-        this.element?.classList.remove("armored");
-        this.element?.classList.add("generic");
+        this.changeAppearance("generic");
     }
 }
