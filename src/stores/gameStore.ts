@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import type { PumpkinType } from "../types/pumpkins/pumpkinType.ts";
-import { reactive } from "vue";
+import { reactive, shallowReactive } from "vue";
 import { createLanes, type Lane } from "../types/lane.ts";
+import type Undead from "../types/undead/undead.ts";
 
 interface State {
     leaves: number;
@@ -10,6 +11,7 @@ interface State {
     zombiesThisRound: number;
     unlockedCards: PumpkinType[];
     lanes: Lane[];
+    undead: Undead[];
     dragging: PumpkinType | "axe" | undefined;
 }
 
@@ -21,6 +23,7 @@ const store = defineStore("game", {
         zombiesThisRound: 0,
         unlockedCards: reactive([ "Maple Tree" ]),
         lanes: createLanes(),
+        undead: shallowReactive([]),
         dragging: undefined
     }),
     actions: {

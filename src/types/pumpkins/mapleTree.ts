@@ -2,6 +2,7 @@ import Pumpkin from "./pumpkin.ts";
 import type { PumpkinType } from "./pumpkinType.ts";
 import { shallowReactive, type ShallowReactive } from "vue";
 import useGameStore from "../../stores/gameStore.ts";
+import Health from "../health.ts";
 
 function randomize() {
     return Math.random() * 10 + 10;
@@ -15,7 +16,7 @@ interface LeafDrop {
 export default class MapleTree extends Pumpkin {
     readonly type: PumpkinType = "Maple Tree";
 
-    health: number = 100;
+    health = Health.create(100);
 
     private remaining: number = randomize();
 

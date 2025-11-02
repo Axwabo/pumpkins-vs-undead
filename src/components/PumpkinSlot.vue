@@ -8,6 +8,7 @@ import TreeLeaves from "./TreeLeaves.vue";
 import MapleTree from "../types/pumpkins/mapleTree.ts";
 import type { Slot } from "../types/lane.ts";
 import { storeToRefs } from "pinia";
+import HealthBar from "./HealthBar.vue";
 
 const { index, slotIndex, pumpkin } = defineProps<{ index: number, slotIndex: number; pumpkin: Slot; }>();
 
@@ -42,7 +43,9 @@ function onDrop(ev: DragEvent) {
 <template>
     <div class="slot" v-on:dragover="onDragOver" v-on:drop="onDrop">
         <template v-if="pumpkin">
-            <div :class="[ 'pumpkin', toClass(pumpkin.type) ]"></div>
+            <div :class="[ 'pumpkin', toClass(pumpkin.type) ]">
+                <HealthBar :entity="pumpkin" />
+            </div>
             <TreeLeaves v-if="pumpkin instanceof MapleTree" :tree="pumpkin" />
         </template>
     </div>

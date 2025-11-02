@@ -3,7 +3,7 @@ import Entity from "../entity.ts";
 import useGameStore from "../../stores/gameStore.ts";
 
 export default abstract class Pumpkin extends Entity<Pumpkin> {
-    private readonly slotIndex: number;
+    readonly slotIndex: number;
 
     constructor(laneIndex: number, slotIndex: number) {
         super(laneIndex);
