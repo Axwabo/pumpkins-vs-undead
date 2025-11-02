@@ -15,6 +15,8 @@ interface LeafDrop {
 export default class MapleTree extends Pumpkin {
     readonly type: PumpkinType = "Maple Tree";
 
+    health: number = 100;
+
     private remaining: number = randomize();
 
     public readonly drops: ShallowReactive<LeafDrop[]> = shallowReactive([]);

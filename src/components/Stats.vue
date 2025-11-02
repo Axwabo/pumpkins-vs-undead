@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import useGameStore from "../stores/gameStore.ts";
+import { computed } from "vue";
+import rounds from "../types/rounds/roundDefinitions.ts";
 
-const { round } = storeToRefs(useGameStore());
+const { round, wave, zombiesThisRound } = storeToRefs(useGameStore());
+
+const totalZombies = computed(() => rounds[round.value]!.reduce((prev, curr) => curr.length + prev, 0));
 </script>
 
 <template>
     <footer id="stats">
         <span>🎃 ️Pumpkins vs. Undead 🧟</span>
         <div class="separator"></div>
-        <span>Round <span class="round">{{ round }}</span></span>
-        <progress value="0.5"></progress>
+        <span>Round <span class="red">{{ round + 1 }}</span> Wave <span class="red">{{ wave + 1 }}</span></span>
+        <progress :value="zombiesThisRound" :max="totalZombies"></progress>
     </footer>
 </template>
 
@@ -25,11 +29,12 @@ const { round } = storeToRefs(useGameStore());
     paint-order: stroke fill;
 }
 
-.round {
+.red {
     color: red;
 }
 
 progress {
     accent-color: red;
+    scale: -1;
 }
 </style>
