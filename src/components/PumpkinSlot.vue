@@ -7,10 +7,12 @@ import createPumpkin from "../types/pumpkins/pumpkinFactory.ts";
 import type { PumpkinType } from "../types/pumpkins/pumpkinType.ts";
 import useGameStore from "../stores/gameStore.ts";
 import { pumpkinCosts } from "../types/pumpkins/cost.ts";
-
-const current = ref<Pumpkin | null>(null);
+import LeafDrops from "./LeafDrops.vue";
+import MapleTree from "../types/pumpkins/mapleTree.ts";
 
 const { purchase } = useGameStore();
+
+const current = ref<Pumpkin | null>(null);
 
 useAnimationFrame(seconds => current.value?.update(seconds));
 
@@ -29,16 +31,19 @@ function onDrop(ev: DragEvent) {
 </script>
 
 <template>
-    <div :class="[ 'slot', toClass(current?.type) ]" v-on:dragover="onDragOver" v-on:drop="onDrop">
+    <div class="slot" v-on:dragover="onDragOver" v-on:drop="onDrop">
+        <template v-if="current">
+            <div :class="[ 'pumpkin', toClass(current.type) ]"></div>
+            <LeafDrops v-if="current instanceof MapleTree" :tree="current" />
+        </template>
     </div>
 </template>
 
 <style scoped>
 .slot {
+    position: relative;
     background-color: rgba(0, 255, 0, 0.1);
-}
-
-.slot.maple-tree::after {
-    content: "🍁"; /* TODO */
+    display: grid;
+    padding: 15%;
 }
 </style>

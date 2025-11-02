@@ -1,0 +1,9 @@
+.pumpkin {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.maple-tree {
+    background-image: url("./assets/images/maple-tree.png");
+}
