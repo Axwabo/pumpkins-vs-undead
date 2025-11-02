@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PumpkinSlot from "./PumpkinSlot.vue";
 import useGameStore from "../stores/gameStore.ts";
+import UndeadSpawner from "./UndeadSpawner.vue";
 
 const { lanes } = useGameStore();
 
@@ -14,11 +15,13 @@ const { index } = defineProps<{ index: number; }>();
         </div>
         <PumpkinSlot v-for="(pumpkin, slotIndex) in lanes[index]" :key="pumpkin?.type ?? slotIndex" :index :slotIndex :pumpkin />
         <div class="sidewalk"></div>
+        <UndeadSpawner :index />
     </div>
 </template>
 
 <style scoped>
 .lane {
+    position: relative;
     display: grid;
     grid-template-columns: 6rem repeat(10, 1fr) 15rem;
 }

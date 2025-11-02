@@ -4,6 +4,6 @@ import type { UndeadType } from "./undeadType.ts";
 
 export default class GenericUndead extends Undead {
     readonly type: UndeadType = "generic";
-    readonly speed: number = 5;
+    readonly speed: number = 20;
     readonly health = Health.create(100);
 }
