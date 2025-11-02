@@ -39,7 +39,7 @@ function onDrop(ev: DragEvent) {
     if (axe)
         pumpkin?.remove();
     else if (purchase(pumpkinCosts[data]))
-        lanes[index]!.slots[slotIndex] = createPumpkin(data, index, slotIndex);
+        lanes[index]!.slots[slotIndex] = createPumpkin(data, lanes[index]!, slotIndex);
     dragging.value = undefined;
 }
 

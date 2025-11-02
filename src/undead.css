@@ -1,3 +1,7 @@
 .generic {
     background-image: url("./assets/images/generic.webp");
 }
+
+.ghost {
+    background-image: url("./assets/images/ghost.webp");
+}
