@@ -4,7 +4,7 @@ import { toClass } from "../utils/css.ts";
 import createPumpkin from "../types/pumpkins/pumpkinFactory.ts";
 import useGameStore from "../stores/gameStore.ts";
 import { pumpkinCosts } from "../types/pumpkins/cost.ts";
-import LeafDrops from "./LeafDrops.vue";
+import TreeLeaves from "./TreeLeaves.vue";
 import MapleTree from "../types/pumpkins/mapleTree.ts";
 import type { Slot } from "../types/lane.ts";
 import { storeToRefs } from "pinia";
@@ -43,7 +43,7 @@ function onDrop(ev: DragEvent) {
     <div class="slot" v-on:dragover="onDragOver" v-on:drop="onDrop">
         <template v-if="pumpkin">
             <div :class="[ 'pumpkin', toClass(pumpkin.type) ]"></div>
-            <LeafDrops v-if="pumpkin instanceof MapleTree" :tree="pumpkin" />
+            <TreeLeaves v-if="pumpkin instanceof MapleTree" :tree="pumpkin" />
         </template>
     </div>
 </template>

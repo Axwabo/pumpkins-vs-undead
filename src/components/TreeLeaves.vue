@@ -18,8 +18,8 @@ const { earn } = useGameStore();
 <style scoped>
 .drops {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 10%;
+    right: 10%;
 }
 
 .anchor {
@@ -43,6 +43,12 @@ const { earn } = useGameStore();
 @keyframes drop {
     50% {
         translate: 0 -1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .drop {
+        animation: none;
     }
 }
 </style>

@@ -4,6 +4,7 @@ import Lane from "./Lane.vue";
 import Soundtrack from "./Soundtrack.vue";
 import useGameStore from "../stores/gameStore.ts";
 import Stats from "./Stats.vue";
+import RandomLeafDrops from "./RandomLeafDrops.vue";
 
 const { lanes } = useGameStore();
 </script>
@@ -12,6 +13,7 @@ const { lanes } = useGameStore();
     <div id="game">
         <NavBar />
         <Lane v-for="(_, index) in lanes" :index />
+        <RandomLeafDrops />
         <Stats />
     </div>
     <Soundtrack />
