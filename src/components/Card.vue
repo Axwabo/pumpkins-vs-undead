@@ -17,7 +17,7 @@ function onDragStart(ev: DragEvent) {
 </script>
 
 <template>
-    <button class="card" :disabled="leaves < cost" draggable="true" v-on:dragstart="onDragStart">
+    <button class="card" :disabled="leaves < cost" :draggable="leaves >= cost" v-on:dragstart="onDragStart">
         <span :class="[ 'image', toClass(type) ]"></span>
         <span>{{ type }}</span>
         <span>{{ cost }}🍁</span>
