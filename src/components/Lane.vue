@@ -2,16 +2,26 @@
 import PumpkinSlot from "./PumpkinSlot.vue";
 import useGameStore from "../stores/gameStore.ts";
 import UndeadSpawner from "./UndeadSpawner.vue";
-import { ref, useTemplateRef } from "vue";
+import { computed, ref, useTemplateRef, watch } from "vue";
 import useElementBinding from "../composables/useElementBinding.ts";
+import { storeToRefs } from "pinia";
 
 const { lanes } = useGameStore();
+
+const { speed, round } = storeToRefs(useGameStore());
 
 const { index } = defineProps<{ index: number; }>();
 
 const car = useTemplateRef("car");
 
 const carExists = ref(true);
+
+const time = computed(() => `${5 / speed.value}s`);
+
+watch(round, () => {
+    car.value?.classList.remove("moving");
+    carExists.value = true;
+});
 
 useElementBinding(() => lanes[index] ?? null, car);
 </script>
@@ -52,7 +62,7 @@ useElementBinding(() => lanes[index] ?? null, car);
 }
 
 .car.moving {
-    animation: car 5s linear;
+    animation: car v-bind(time) linear;
 }
 
 @keyframes car {
