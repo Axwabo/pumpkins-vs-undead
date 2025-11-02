@@ -22,6 +22,7 @@ const tilt = window.innerWidth < window.innerHeight;
     place-items: center;
     gap: 1rem;
     text-align: center;
+    font-size: 2em;
 }
 
 .tilt {
