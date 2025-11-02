@@ -2,16 +2,15 @@
 import NavBar from "./NavBar.vue";
 import Lane from "./Lane.vue";
 import Soundtrack from "./Soundtrack.vue";
+import useGameStore from "../stores/gameStore.ts";
+
+const { lanes } = useGameStore();
 </script>
 
 <template>
     <div id="game">
         <NavBar />
-        <Lane />
-        <Lane />
-        <Lane />
-        <Lane />
-        <Lane />
+        <Lane v-for="lane in lanes" :lane />
     </div>
     <Soundtrack />
 </template>
