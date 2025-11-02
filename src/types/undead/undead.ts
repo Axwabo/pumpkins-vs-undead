@@ -19,7 +19,7 @@ export default abstract class Undead extends Entity {
                 continue;
             if ((this.cooldown -= seconds) > 0)
                 return;
-            if ((slot.health.current -= 10) <= 0)
+            if ((slot.health.current -= 20) <= 0)
                 slot.remove();
             this.cooldown = 2;
             return;

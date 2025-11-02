@@ -39,7 +39,7 @@ export default class SeedShooter extends Pumpkin {
         if (this.remaining > 0 || !this.shouldShoot())
             return;
         this.remaining = 2;
-        this.projectiles.push(new Projectile(this, "red", 50));
+        this.projectiles.push(new Projectile(this, "orange", 20));
     }
 
     private shouldShoot() {
