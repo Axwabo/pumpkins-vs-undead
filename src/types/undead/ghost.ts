@@ -11,4 +11,8 @@ export default class Ghost extends Undead {
         if (!this.triggerCar(this.position.x))
             this.move(seconds);
     }
+
+    freeze() {
+        super.freeze();
+    }
 }

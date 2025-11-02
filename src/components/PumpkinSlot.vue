@@ -12,6 +12,7 @@ import HealthBar from "./HealthBar.vue";
 import ProjectileDisplay from "./ProjectileDisplay.vue";
 import { useTemplateRef } from "vue";
 import useElementBinding from "../composables/useElementBinding.ts";
+import ShooterBase from "../types/pumpkins/shooterBase.ts";
 
 const { index, slotIndex, pumpkin } = defineProps<{ index: number, slotIndex: number; pumpkin: Slot; }>();
 
@@ -59,7 +60,7 @@ useElementBinding(() => pumpkin, element);
             <div :class="[ 'pumpkin', toClass(pumpkin.type) ]" ref="element" v-on:animationend="pumpkin?.remove()">
                 <HealthBar :entity="pumpkin" />
             </div>
-            <ProjectileDisplay v-for="projectile in pumpkin.projectiles" :projectile :key="projectile.id" />
+            <ProjectileDisplay v-if="pumpkin instanceof ShooterBase" v-for="projectile in pumpkin.projectiles" :projectile :key="projectile.id" />
             <TreeLeaves v-if="pumpkin instanceof MapleTree" :tree="pumpkin" />
         </template>
     </div>

@@ -8,8 +8,10 @@ export default abstract class Undead extends Entity {
     abstract readonly speed: number;
     readonly position = reactive({ x: window.innerWidth });
     cooldown: number = 2;
+    fronzenFor: number = 0;
 
     update(seconds: number): void {
+        this.updateFreeze(seconds);
         const x = this.position.x;
         if (this.triggerCar(x))
             return;
@@ -31,7 +33,7 @@ export default abstract class Undead extends Entity {
     }
 
     move(seconds: number) {
-        this.position.x -= seconds * this.speed * (this.element?.classList.contains("frozen") ? 0.5 : 1);
+        this.position.x -= seconds * this.speed * (this.fronzenFor > 0 ? 0.5 : 1);
         if (this.position.x > 10)
             return;
         const { lose } = useGameStore();
@@ -54,5 +56,17 @@ export default abstract class Undead extends Entity {
         this.lane.element.classList.add("moving");
         this.remove();
         return true;
+    }
+
+    updateFreeze(seconds: number) {
+        this.fronzenFor -= seconds;
+        if (this.fronzenFor <= 0)
+            this.element?.classList.remove("fronzen");
+        else
+            this.element?.classList.add("frozen");
+    }
+
+    freeze() {
+        this.fronzenFor = 5;
     }
 }
