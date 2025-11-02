@@ -1,9 +1,11 @@
 import type { PumpkinType } from "./pumpkinType.ts";
 import Entity from "../entity.ts";
-import useGameStore from "../../stores/gameStore.ts";
+import type { ShallowReactive } from "vue";
+import type Projectile from "../projectile.ts";
 
-export default abstract class Pumpkin extends Entity<Pumpkin> {
+export default abstract class Pumpkin extends Entity {
     readonly slotIndex: number;
+    readonly projectiles: ShallowReactive<Set<Projectile>>;
 
     constructor(laneIndex: number, slotIndex: number) {
         super(laneIndex);
@@ -15,7 +17,6 @@ export default abstract class Pumpkin extends Entity<Pumpkin> {
     public abstract update(deltaSeconds: number): void;
 
     remove(): void {
-        const { lanes } = useGameStore();
-        lanes[this.laneIndex]!.slots[this.slotIndex] = null;
+        this.lane.slots[this.slotIndex] = null;
     }
 }

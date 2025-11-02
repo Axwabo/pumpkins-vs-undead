@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type Entity from "../types/entity.ts";
 
-const { entity } = defineProps<{ entity: Entity<any>; }>();
+const { entity } = defineProps<{ entity: Entity; }>();
 </script>
 
 <template>
