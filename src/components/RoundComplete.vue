@@ -3,8 +3,9 @@ import useGameStore from "../stores/gameStore.ts";
 import { storeToRefs } from "pinia";
 import { computed, useTemplateRef, watch } from "vue";
 import rewards from "../types/rewards.ts";
+import { toClass } from "../utils/css.ts";
 
-const { nextRound } = useGameStore();
+const { nextRound, unlockedCards } = useGameStore();
 
 const { round, roundCompleted } = storeToRefs(useGameStore());
 
@@ -12,14 +13,20 @@ const complete = useTemplateRef("complete");
 
 const reward = computed(() => rewards[round.value]);
 
-watch(roundCompleted, value => value && complete.value?.showModal());
+watch(roundCompleted, value => {
+    if (!value)
+        return;
+    complete.value?.showModal();
+    if (reward.value)
+        unlockedCards.push(reward.value);
+});
 </script>
 
 <template>
     <dialog ref="complete" v-on:close="nextRound">
         <h1>Round {{ round + 1 }} complete!</h1>
         <template v-if="reward">
-            <div :class="[ 'pumpkin', reward ]"></div>
+            <span :class="[ 'pumpkin', toClass(reward) ]"></span>
             <p>Unlocked {{ reward }}</p>
         </template>
         <button v-on:click="complete?.close()">Continue</button>
@@ -29,10 +36,12 @@ watch(roundCompleted, value => value && complete.value?.showModal());
 <style scoped>
 dialog {
     font-size: 2em;
+    text-align: center;
 }
 
 .pumpkin {
     width: 5rem;
     height: 5rem;
+    display: inline-block;
 }
 </style>
