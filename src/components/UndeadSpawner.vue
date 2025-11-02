@@ -2,16 +2,15 @@
 import useGameStore from "../stores/gameStore.ts";
 import { storeToRefs } from "pinia";
 import useAnimationFrame from "../composables/useAnimationFrame.ts";
-import { computed, shallowReactive } from "vue";
+import { computed } from "vue";
 import rounds from "../types/rounds/roundDefinitions.ts";
 import type { UndeadType } from "../types/undead/undeadType.ts";
 import createUndead from "../types/undead/undeadFactory.ts";
-import type Undead from "../types/undead/undead.ts";
 import UndeadDisplay from "./UndeadDisplay.vue";
 
 const { index } = defineProps<{ index: number; }>();
 
-const { undead } = useGameStore();
+const { undead, lanes } = useGameStore();
 
 const { round, wave, zombiesThisRound, zombiesThisWave } = storeToRefs(useGameStore());
 
@@ -19,7 +18,7 @@ const currentWave = computed(() => rounds[round.value]![wave.value]!);
 
 let cooldown = randomize();
 
-const thisLane = shallowReactive<Undead[]>([]);
+const thisLane = lanes[index]!;
 
 useAnimationFrame(seconds => {
     if (zombiesThisWave.value >= currentWave.value.length || (cooldown -= seconds) > 0)
@@ -28,7 +27,7 @@ useAnimationFrame(seconds => {
     const type = currentWave.value[zombiesThisWave.value++]! as UndeadType;
     const entity = createUndead(type, index);
     undead.add(entity);
-    thisLane.push(entity);
+    thisLane.undead.add(entity);
     cooldown = randomize();
 });
 
@@ -38,7 +37,7 @@ function randomize() {
 </script>
 
 <template>
-    <UndeadDisplay v-for="undead in thisLane" :key="undead.id" :undead />
+    <UndeadDisplay v-for="undead in thisLane.undead" :key="undead.id" :undead />
 </template>
 
 <style scoped>

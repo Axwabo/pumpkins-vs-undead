@@ -6,7 +6,7 @@ import HealthBar from "./HealthBar.vue";
 
 const { undead } = defineProps<{ undead: Undead; }>();
 
-const x = computed(() => `${undead.x.value}px`);
+const x = computed(() => `${undead.position.x}px`);
 
 useAnimationFrame(seconds => undead.update(seconds));
 </script>

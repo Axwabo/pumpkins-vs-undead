@@ -13,7 +13,7 @@ const { index } = defineProps<{ index: number; }>();
         <div class="house">
             <button>🚗</button>
         </div>
-        <PumpkinSlot v-for="(pumpkin, slotIndex) in lanes[index]" :key="pumpkin?.type ?? slotIndex" :index :slotIndex :pumpkin />
+        <PumpkinSlot v-for="(pumpkin, slotIndex) in lanes[index]!.slots" :key="pumpkin?.type ?? slotIndex" :index :slotIndex :pumpkin />
         <div class="sidewalk"></div>
         <UndeadSpawner :index />
     </div>

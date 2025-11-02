@@ -16,6 +16,6 @@ export default abstract class Pumpkin extends Entity<Pumpkin> {
 
     remove(): void {
         const { lanes } = useGameStore();
-        lanes[this.laneIndex]![this.slotIndex] = null;
+        lanes[this.laneIndex]!.slots[this.slotIndex] = null;
     }
 }
