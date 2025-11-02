@@ -5,7 +5,7 @@ import useGameStore from "../../stores/gameStore.ts";
 import Health from "../health.ts";
 
 function randomize() {
-    return Math.random() * 10 + 10;
+    return Math.random() * 10 + 5;
 }
 
 interface LeafDrop {

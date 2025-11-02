@@ -31,7 +31,7 @@ export default abstract class Undead extends Entity {
     remove(): void {
         const { undead, nextWave } = useGameStore();
         this.lane.undead.delete(this);
-        if (undead.delete(this))
+        if (undead.delete(this) && undead.size === 0)
             nextWave();
     }
 }

@@ -13,7 +13,7 @@ const color = projectile.color;
 let x = 0;
 
 useAnimationFrame(seconds => {
-    x += seconds * 100;
+    x += seconds * 300;
     if (!element.value)
         return;
     element.value.style.translate = `${x}px -50%`;

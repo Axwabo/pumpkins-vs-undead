@@ -7,7 +7,7 @@ export default class SeedShooter extends Pumpkin {
     readonly type: PumpkinType = "Seed Shooter";
     readonly health = Health.create(150);
 
-    remaining: number = 0;
+    remaining: number = 2;
 
     update(deltaSeconds: number): void {
         this.remaining -= deltaSeconds;
@@ -45,7 +45,8 @@ export default class SeedShooter extends Pumpkin {
     private shouldShoot() {
         if (!this.element)
             return false;
-        const x = this.element.getBoundingClientRect().right;
+        const rect = this.element.getBoundingClientRect();
+        const x = (rect.left + rect.right) * 0.5;
         for (const undead of this.lane.undead)
             if (undead.element && undead.element.getBoundingClientRect().left > x)
                 return true;

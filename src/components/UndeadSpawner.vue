@@ -2,7 +2,7 @@
 import useGameStore from "../stores/gameStore.ts";
 import { storeToRefs } from "pinia";
 import useAnimationFrame from "../composables/useAnimationFrame.ts";
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import rounds from "../types/rounds/roundDefinitions.ts";
 import type { UndeadType } from "../types/undead/undeadType.ts";
 import createUndead from "../types/undead/undeadFactory.ts";
@@ -16,7 +16,7 @@ const { round, wave, zombiesThisRound, zombiesThisWave } = storeToRefs(useGameSt
 
 const currentWave = computed(() => rounds[round.value]![wave.value]!);
 
-let cooldown = randomize();
+let cooldown = randomize() + 10;
 
 const thisLane = lanes[index]!;
 
@@ -32,8 +32,10 @@ useAnimationFrame(seconds => {
 });
 
 function randomize() {
-    return Math.random() * 3 + 2;
+    return Math.random() * 5 + 2;
 }
+
+watch(wave, () => cooldown = randomize() + 10);
 </script>
 
 <template>
