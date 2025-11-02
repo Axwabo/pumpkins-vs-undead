@@ -52,10 +52,17 @@ const store = defineStore("game", {
             this.wave++;
         },
         nextRound() {
+            this.roundCompleted = false;
             this.zombiesThisRound = 0;
             this.zombiesThisWave = 0;
             this.wave = 0;
+            this.leaves = 100;
             this.round++;
+            for (const lane of this.lanes) {
+                lane.undead.clear();
+                for (let i = 0; i < lane.slots.length; i++)
+                    lane.slots[i] = null;
+            }
         }
     }
 });
