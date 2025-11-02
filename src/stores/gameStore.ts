@@ -3,6 +3,7 @@ import type { PumpkinType } from "../types/pumpkins/pumpkinType.ts";
 import { reactive, shallowReactive } from "vue";
 import { createLanes, type Lane } from "../types/lane.ts";
 import type Undead from "../types/undead/undead.ts";
+import rounds from "../types/rounds/roundDefinitions.ts";
 
 interface State {
     leaves: number;
@@ -14,6 +15,8 @@ interface State {
     lanes: Lane[];
     undead: Set<Undead>;
     dragging: PumpkinType | "axe" | undefined;
+    roundCompleted: boolean;
+    speed: number;
 }
 
 const store = defineStore("game", {
@@ -26,7 +29,9 @@ const store = defineStore("game", {
         unlockedCards: reactive([ "Maple Tree", "Seed Shooter" ]),
         lanes: createLanes(),
         undead: shallowReactive(new Set()),
-        dragging: undefined
+        dragging: undefined,
+        roundCompleted: false,
+        speed: 1
     }),
     actions: {
         earn(amount: number) {
@@ -39,6 +44,10 @@ const store = defineStore("game", {
             return true;
         },
         nextWave() {
+            if (this.wave >= rounds[this.round]!.length - 1) {
+                this.roundCompleted = true;
+                return;
+            }
             this.zombiesThisWave = 0;
             this.wave++;
         },
