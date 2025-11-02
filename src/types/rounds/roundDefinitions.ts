@@ -41,7 +41,7 @@ const rounds: Round[] = [
         [ "armored", "armored", "armored", "armored", "armored", "armored", "armored" ]
     ],
     [
-        [ "generic", "armored", "generic", "enderman", "enderman" ],
+        [ "generic", "armored", "enderman", "enderman" ],
         [ "enderman", "enderman", "enderman", "enderman", "enderman" ],
         [ "ghost", "ghost", "ghost", "ghost", "ghost" ],
         [ "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "generic", "armored", "armored", "armored", "armored", "armored" ],

@@ -6,5 +6,5 @@ export default class SeedShooter extends ShooterBase {
     readonly type: PumpkinType = "Seed Shooter";
     readonly health = Health.create(150);
     color: string = "orange";
-    damage: number = 20;
+    damage: number = 10;
 }
