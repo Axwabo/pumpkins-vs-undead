@@ -5,6 +5,7 @@ import type { PumpkinType } from "./pumpkinType.ts";
 export default class Grape extends ShooterBase {
     color: string = "#88bbe4";
     damage: number = 15;
+    rate: number = 3;
     freezing: boolean = true;
     readonly health = Health.create(80);
     readonly type: PumpkinType = "Grape";

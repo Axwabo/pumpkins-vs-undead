@@ -12,12 +12,20 @@
     background-image: url("./assets/images/shooter.webp");
 }
 
+.peach {
+    background-image: url("./assets/images/peach.webp");
+}
+
 .jack-o-lantern {
     background-image: url("./assets/images/lantern.webp");
 }
 
-.peach {
-    background-image: url("./assets/images/peach.webp");
+.watermelon {
+    background-image: url("./assets/images/watermelon.webp");
+}
+
+.grape {
+    background-image: url("./assets/images/grape.webp");
 }
 
 .slot .peach::after {

@@ -6,7 +6,8 @@ export default abstract class ShooterBase extends Pumpkin {
     readonly projectiles: Projectile[] = shallowReactive([]);
     abstract color: string;
     abstract damage: number;
-    remaining: number = 2;
+    rate: number = 2;
+    remaining: number = this.rate;
     freezing: boolean = false;
 
     update(deltaSeconds: number): void {
@@ -40,7 +41,7 @@ export default abstract class ShooterBase extends Pumpkin {
     shoot() {
         if (this.remaining > 0 || !this.shouldShoot())
             return false;
-        this.remaining = 2;
+        this.remaining = this.rate;
         this.projectiles.push(new Projectile(this, this.color, this.damage, this.freezing));
         return true;
     }

@@ -11,5 +11,5 @@
 }
 
 .frozen {
-    filter: sepia(0.75) hue-rotate(120deg);
+    filter: sepia(0.75) hue-rotate(120deg) brightness(1.5);
 }
