@@ -18,7 +18,7 @@ interface State {
 
 const store = defineStore("game", {
     state: (): State => ({
-        leaves: 50,
+        leaves: 100,
         round: 0,
         wave: 0,
         zombiesThisWave: 0,

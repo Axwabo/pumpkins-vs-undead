@@ -9,6 +9,7 @@ import MapleTree from "../types/pumpkins/mapleTree.ts";
 import type { Slot } from "../types/lane.ts";
 import { storeToRefs } from "pinia";
 import HealthBar from "./HealthBar.vue";
+import ProjectileDisplay from "./ProjectileDisplay.vue";
 
 const { index, slotIndex, pumpkin } = defineProps<{ index: number, slotIndex: number; pumpkin: Slot; }>();
 
@@ -46,6 +47,7 @@ function onDrop(ev: DragEvent) {
             <div :class="[ 'pumpkin', toClass(pumpkin.type) ]">
                 <HealthBar :entity="pumpkin" />
             </div>
+            <ProjectileDisplay v-for="projectile in pumpkin.projectiles" :projectile :key="projectile.id" />
             <TreeLeaves v-if="pumpkin instanceof MapleTree" :tree="pumpkin" />
         </template>
     </div>

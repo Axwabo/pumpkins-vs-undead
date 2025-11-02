@@ -12,6 +12,6 @@ export default abstract class Entity {
     constructor(laneIndex: number) {
         this.laneIndex = laneIndex;
         const { lanes } = useGameStore();
-        this.laneIndex = lanes[laneIndex]!;
+        this.lane = lanes[laneIndex]!;
     }
 }

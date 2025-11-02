@@ -1,11 +1,11 @@
 import type { PumpkinType } from "./pumpkinType.ts";
 import Entity from "../entity.ts";
-import type { ShallowReactive } from "vue";
+import { shallowReactive } from "vue";
 import type Projectile from "../projectile.ts";
 
 export default abstract class Pumpkin extends Entity {
     readonly slotIndex: number;
-    readonly projectiles: ShallowReactive<Set<Projectile>>;
+    readonly projectiles: Projectile[] = shallowReactive([]);
 
     constructor(laneIndex: number, slotIndex: number) {
         super(laneIndex);
