@@ -36,7 +36,7 @@ useElementBinding(() => projectile, element);
     translate: 0 -50%;
     width: 1rem;
     height: 1rem;
-    background-color: v-bind(color);
+    background-image: radial-gradient(v-bind(color) 25%, transparent);
     border-radius: 50%;
 }
 </style>
