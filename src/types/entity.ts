@@ -4,6 +4,4 @@ export default abstract class Entity<T extends Entity<T>> {
     constructor(laneIndex: number) {
         this.laneIndex = laneIndex;
     }
-
-    abstract remove(): void;
 }
