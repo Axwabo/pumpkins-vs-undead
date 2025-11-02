@@ -22,6 +22,7 @@ defineExpose({
         <input type="range" v-model="volume" min="0" max="1" step="0.01">
         <span id="volumeDisplay">{{ (volume * 100).toFixed(0) }}%</span>
         <button v-on:click="muted = !muted">{{ muted ? "🔇" : "🔊" }}</button>
+        <p><a href="https://www.youtube.com/watch?v=be5ZFB8Nnm0" target="Halloween Theme (Full Version)"><small>Soundtrack by Jacek 'Fragik' Rogal</small></a></p>
     </dialog>
 </template>
 
@@ -30,7 +31,7 @@ dialog {
     text-align: center;
 }
 
-h1, h2 {
+h1, h2, p {
     margin: 0;
 }
 
